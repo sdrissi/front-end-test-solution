@@ -9,7 +9,6 @@ class TreeElement extends Component {
     }
 
     onClickExpand() {
-        console.log("Expand clicked!");
         this.setState({isExpanded: !this.state.isExpanded});
     }
 
