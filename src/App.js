@@ -1,21 +1,27 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
+import Tree, {TreeElement} from "./components/Tree";
+import data from "./data/sectors";
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload. That's right...it worked
-        </p>
-      </div>
-    );
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+            items: data,
+            expanded: []
+        };
+
+    }
+
+    render() {
+        return <Tree>
+            {
+                this.state.items.map(it => {
+                    return <TreeElement id={it.id} name={it.name} items={it.items} />;
+                })
+            }
+        </Tree>
+    }
 }
 
 export default App;
