@@ -14,11 +14,11 @@ class TreeElement extends Component {
 
     render() {
         const displaySubItems = this.props.items && this.state.isExpanded;
-        return <ul key={this.props.id}>
-            <li key={this.props.name} onClick={() => this.onClickExpand()}>{this.props.name}</li>
+        return <ul>
+            <li onClick={() => this.onClickExpand()}>{this.props.name}</li>
             {
                  displaySubItems && this.props.items.map(it => {
-                     return <TreeElement id={it.id} name={it.name} items={it.items}/>
+                     return <TreeElement key={it.id} name={it.name} items={it.items}/>
                  })
             }
         </ul>;

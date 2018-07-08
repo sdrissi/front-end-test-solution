@@ -17,7 +17,7 @@ class App extends Component {
         return <Tree>
             {
                 this.state.items.map(it => {
-                    return <TreeElement id={it.id} name={it.name} items={it.items} />;
+                    return <TreeElement key={it.id} name={it.name} items={it.items} />;
                 })
             }
         </Tree>
