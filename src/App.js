@@ -23,7 +23,6 @@ class App extends Component {
                 if (res && res.length > 0) {
                     return acc.concat({...it, items: res, isExpanded: true});
                 }
-                return acc;
             }
 
             if (it.name.includes(searchTerm)) {
@@ -54,7 +53,6 @@ class App extends Component {
             <Tree className="Tree">
                 {
                     items.map(it => {
-                        if (!it) return null;
                         return <TreeElement key={it.id} name={it.name} items={it.items} isExpanded={it.isExpanded}/>;
                     })
                 }
