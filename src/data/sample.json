@@ -1,0 +1,40 @@
+[
+  {
+    "id": 1,
+    "name": "a",
+    "items": [
+      {
+        "id": 2,
+        "name": "b",
+        "items": [
+          {
+            "id": 3,
+            "name": "c",
+            "items": null
+          },
+          {
+            "id": 4,
+            "name": "d",
+            "items": null
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "c",
+        "items": null
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "ab",
+    "items": [
+      {
+        "id": 7,
+        "name": "c",
+        "items": null
+      }
+    ]
+  }
+]

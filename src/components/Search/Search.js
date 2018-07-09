@@ -8,7 +8,8 @@ class Search extends Component {
     }
 
     render() {
-        return <input onChange={(e) => this.handleInputChange(e.target.value)} className="Search" type="text"/>
+        return <input onChange={(e) => this.handleInputChange(e.target.value)} className="Search" type="text"
+                      placeholder="Search for sectors"/>
     }
 }
 

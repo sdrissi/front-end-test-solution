@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 
-import Tree, {TreeElement} from "./components/Tree";
+import Tree from "./components/Tree";
 import Search from "./components/Search";
 
 import data from "./data/sectors";
@@ -16,17 +16,30 @@ class App extends Component {
 
     }
 
-    search(searchTerm, items) {
+    search(items, searchTerm) {
+        if (!items) {
+            return [];
+        }
+
         return items.reduce((acc, it) => {
-            if (it.items) {
-                const res = this.search(searchTerm, it.items);
-                if (res && res.length > 0) {
-                    return acc.concat({...it, items: res, isExpanded: true});
-                }
+            const res = this.search(it.items, searchTerm);
+            const obj = {...it};
+
+            const foundItems = res.length > 0;
+            const nameContainsSearchTerm = it.name.includes(searchTerm);
+
+            if(foundItems) {
+                obj.items = res;
+                obj.isExpanded = true;
             }
 
-            if (it.name.includes(searchTerm)) {
-                return acc.concat({...it, isExpanded: true});
+            if (nameContainsSearchTerm) {
+                obj.highlight = searchTerm;
+                obj.isExpanded = obj.isExpanded || false;
+            }
+
+            if(foundItems || nameContainsSearchTerm) {
+                acc = acc.concat(obj);
             }
 
             return acc;
@@ -36,7 +49,7 @@ class App extends Component {
     handleSearch(searchTerm) {
         if (searchTerm && searchTerm.trim().length > 0) {
             this.setState({
-                searchResults: this.search(searchTerm, [...data])
+                searchResults: this.search([...data], searchTerm)
             });
         } else {
             this.setState({
@@ -50,13 +63,7 @@ class App extends Component {
         const items = this.state.searchResults ? this.state.searchResults : this.state.items;
         return <div>
             <Search onChange={(searchTerm) => this.handleSearch(searchTerm)}/>
-            <Tree className="Tree">
-                {
-                    items.map(it => {
-                        return <TreeElement key={it.id} name={it.name} items={it.items} isExpanded={it.isExpanded}/>;
-                    })
-                }
-            </Tree>
+            <Tree items={items}/>
         </div>;
 
     }

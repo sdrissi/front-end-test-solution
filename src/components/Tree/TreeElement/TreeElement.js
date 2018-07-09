@@ -14,16 +14,30 @@ class TreeElement extends Component {
     }
 
     render() {
-        const displaySubItems = (this.props.items && this.state.isExpanded) || (this.props.items && this.props.isExpanded);
+        const {name, items, isExpanded, highlight} = this.props.item;
+        let match;
+
+        if (highlight) {
+            const pattern = `(.*)(${highlight})(.*)`;
+            const reg = new RegExp(pattern, "g");
+            match = reg.exec(name);
+        }
+
+        const displaySubItems = items && (this.state.isExpanded || isExpanded);
+
         return <ul className="Tree__element">
-            <li onClick={() => this.onClickExpand()}>{this.props.name}</li>
-            {
-                 displaySubItems && this.props.items.map(it => {
-                     return <TreeElement key={it.id} name={it.name} items={it.items} isExpanded={it.isExpanded}/>
-                 })
-            }
+            <li onClick={() => this.onClickExpand()}>
+                {
+                    highlight && match ?
+                        <span>{match[1]}<span className="highlighted">{match[2]}</span>{match[3]}</span>
+                        : name
+                }
+            </li>
+            {displaySubItems && items.map(it => <TreeElement key={it.id} item={it}/>)}
         </ul>;
     }
+
+
 }
 
 export default TreeElement;
