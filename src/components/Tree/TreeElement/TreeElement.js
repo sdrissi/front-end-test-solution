@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import "./style.css";
 
 class TreeElement extends Component {
     constructor(props) {
@@ -13,12 +14,12 @@ class TreeElement extends Component {
     }
 
     render() {
-        const displaySubItems = this.props.items && this.state.isExpanded;
-        return <ul>
+        const displaySubItems = (this.props.items && this.state.isExpanded) || (this.props.items && this.props.isExpanded);
+        return <ul className="Tree__element">
             <li onClick={() => this.onClickExpand()}>{this.props.name}</li>
             {
                  displaySubItems && this.props.items.map(it => {
-                     return <TreeElement key={it.id} name={it.name} items={it.items}/>
+                     return <TreeElement key={it.id} name={it.name} items={it.items} isExpanded={it.isExpanded}/>
                  })
             }
         </ul>;
