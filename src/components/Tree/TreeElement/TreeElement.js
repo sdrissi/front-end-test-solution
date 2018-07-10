@@ -22,7 +22,13 @@ export default class TreeElement extends Component {
     }
 
     render() {
-        const { name, items, isExpanded, highlight } = this.props
+        const {
+            name,
+            items,
+            isExpanded,
+            highlight
+        } = this.props;
+
         let match;
 
         if (highlight) {
@@ -37,7 +43,8 @@ export default class TreeElement extends Component {
             <li className="Tree__name" onClick={this.handleClick}>
                 {
                     highlight && match ?
-                        <span>{match[1]}<span className="Tree__name--highlighted">{match[2]}</span>{match[3]}</span>
+                        <span>{match[ 1 ]}<span
+                            className="Tree__name--highlighted">{match[ 2 ]}</span>{match[ 3 ]}</span>
                         : name
                 }
             </li>

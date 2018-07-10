@@ -49,7 +49,7 @@ class App extends Component {
     handleSearch = (searchTerm) => {
         if (searchTerm && searchTerm.trim().length > 0) {
             this.setState({
-                searchResults: this.search([...data], searchTerm)
+                searchResults: this.search([ ...data ], searchTerm)
             });
         } else {
             this.setState({

@@ -1,1 +1,1 @@
-export {default} from "./TreeElement";
+export { default } from "./TreeElement";
