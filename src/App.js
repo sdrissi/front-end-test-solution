@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './App.css';
 
 import Tree from "./components/Tree";
@@ -16,19 +16,19 @@ class App extends Component {
 
     }
 
-    search(items, searchTerm) {
+    search = (items, searchTerm) => {
         if (!items) {
             return [];
         }
 
         return items.reduce((acc, it) => {
             const res = this.search(it.items, searchTerm);
-            const obj = {...it};
+            const obj = { ...it };
 
             const foundItems = res.length > 0;
             const nameContainsSearchTerm = it.name.includes(searchTerm);
 
-            if(foundItems) {
+            if (foundItems) {
                 obj.items = res;
                 obj.isExpanded = true;
             }
@@ -38,7 +38,7 @@ class App extends Component {
                 obj.isExpanded = obj.isExpanded || false;
             }
 
-            if(foundItems || nameContainsSearchTerm) {
+            if (foundItems || nameContainsSearchTerm) {
                 acc = acc.concat(obj);
             }
 
@@ -46,7 +46,7 @@ class App extends Component {
         }, []);
     }
 
-    handleSearch(searchTerm) {
+    handleSearch = (searchTerm) => {
         if (searchTerm && searchTerm.trim().length > 0) {
             this.setState({
                 searchResults: this.search([...data], searchTerm)
@@ -62,7 +62,7 @@ class App extends Component {
     render() {
         const items = this.state.searchResults ? this.state.searchResults : this.state.items;
         return <div>
-            <Search onChange={(searchTerm) => this.handleSearch(searchTerm)}/>
+            <Search onChange={this.handleSearch} placeholder="Search for sectors"/>
             <Tree items={items}/>
         </div>;
 

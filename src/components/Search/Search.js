@@ -1,16 +1,31 @@
-import React, {Component} from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import "./style.css";
 
-class Search extends Component {
+Search.propTypes = {
+    // Callback for input change event
+    onChange: PropTypes.func.isRequired,
+    // set timeout on onChange
+    timeout: PropTypes.number,
+    // Placeholder of input component
+    placeholder: PropTypes.string
+};
 
-    handleInputChange(value) {
-        this.props.onChange(value);
-    }
+export default function Search({ onChange, timeout, placeholder }) {
 
-    render() {
-        return <input onChange={(e) => this.handleInputChange(e.target.value)} className="Search" type="text"
-                      placeholder="Search for sectors"/>
-    }
+    const handleChange = (e) => {
+        const newValue = e.target.value;
+        if (timeout) {
+            setTimeout(() => onChange(newValue), timeout);
+        } else {
+            onChange(newValue);
+        }
+    };
+
+    return (
+        <input className="Search"
+               type="text"
+               onChange={handleChange}
+               placeholder={placeholder}/>
+    );
 }
-
-export default Search;

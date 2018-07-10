@@ -1,3 +1,11 @@
-.Tree__element .highlighted {
+.Tree__element {
+
+}
+
+.Tree__name {
+    font-weight: bold;
+}
+
+.Tree__name--highlighted {
     background-color: yellow;
 }

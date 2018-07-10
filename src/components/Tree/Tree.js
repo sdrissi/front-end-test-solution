@@ -1,18 +1,24 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./style.css";
 
 import TreeElement from "./TreeElement";
 
-class Tree extends React.Component {
-    render() {
-        const {items} = this.props;
-        return <div className="Tree">
-            {
-                items && items.map(it => <TreeElement key={it.id} item={it}/>)
-            }
-            {this.props.children}
-        </div>;
-    }
+Tree.propTypes = {
+    items: PropTypes.arrayOf(PropTypes.object),
 }
 
-export default Tree;
+export default function Tree({ items, children }) {
+    return (
+        <div className="Tree">
+            {
+                items && items.map((it) => <TreeElement key={it.id}
+                                                        name={it.name}
+                                                        items={it.items}
+                                                        isExpanded={it.isExpanded}
+                                                        highlight={it.highlight}/>)
+            }
+            {children}
+        </div>
+    );
+}
