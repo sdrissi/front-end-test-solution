@@ -16,7 +16,7 @@ export default function Search({ onChange, timeout, placeholder }) {
     const handleChange = (e) => {
         const newValue = e.target.value;
         if (timeout) {
-            setTimeout(() => onChange(newValue), timeout);
+            setTimeout(onChange, timeout, newValue);
         } else {
             onChange(newValue);
         }

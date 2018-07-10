@@ -10,6 +10,7 @@ it("renders without crashing", () => {
 it("renders a div with class Tree", () => {
     const wrapper = shallow(<Tree/>);
     expect(wrapper.find("div.Tree").exists()).toBe(true);
+    expect(wrapper.find("div.Tree").length).toEqual(1);
 })
 
 it("renders items as TreeElement", () => {
