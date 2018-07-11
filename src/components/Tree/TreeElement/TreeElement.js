@@ -37,10 +37,12 @@ export default class TreeElement extends Component {
             match = reg.exec(name);
         }
 
-        const displaySubItems = items && (this.state.isExpanded || isExpanded);
+        const hasItems = items && items.length > 0;
+        const displaySubItems = hasItems && (this.state.isExpanded || isExpanded);
 
         return <ul className="Tree__element">
-            <li className="Tree__name" onClick={this.handleClick}>
+            <li className={`Tree__name ${hasItems && !displaySubItems && "Tree__name--hasItems"} ${displaySubItems && "Tree__name--expanded"}`}
+                onClick={this.handleClick}>
                 {
                     highlight && match ?
                         <span>{match[ 1 ]}<span

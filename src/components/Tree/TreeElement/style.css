@@ -1,9 +1,13 @@
 .Tree__element {
-
+    list-style: none;
 }
 
-.Tree__name {
+.Tree__name--expanded {
     font-weight: bold;
+}
+
+.Tree__name--hasItems::before {
+    content: "+ ";
 }
 
 .Tree__name--highlighted {
