@@ -58,11 +58,28 @@ it("doesn't render the items when li is not clicked and isExpanded prop is false
 });
 
 it("renders name prop in a li element with class Tree__name when highlight prop is not provided", () => {
+    const props = {
+        name: "item1"
+    };
+    const wrapper = shallow(<TreeElement {...props}/>);
+    const nameWrapper = wrapper.find("li.Tree__name");
 
+    expect(nameWrapper.exists()).toBe(true);
+    expect(nameWrapper.length).toEqual(1);
+    expect(nameWrapper.text()).toEqual(props.name);
 });
 
-it("renders name prop in a span when highlight prop is provided and renders highlight prop in a span with class Tree__name--highlighted", () => {
+it("renders name prop in a li element with class Tree__name and wrap string in name matching highlight prop in a span with class Tree__name--highlighted", () => {
+    const props = {
+        name: "item1",
+        highlight: "em"
+    };
+    const wrapper = shallow(<TreeElement {...props}/>);
+    const nameWrapper = wrapper.find("li.Tree__name");
 
+    expect(nameWrapper.text()).toEqual(props.name);
+    expect(nameWrapper.find(".Tree__name--highlighted").exists()).toBe(true);
+    expect(nameWrapper.find(".Tree__name--highlighted").text()).toEqual(props.highlight);
 });
 
 
