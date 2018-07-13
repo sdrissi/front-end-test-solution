@@ -25,10 +25,10 @@ class App extends Component {
             const res = this.search(it.items, searchTerm);
             const obj = { ...it };
 
-            const foundItems = res.length > 0;
+            const didFindItems = res.length > 0;
             const nameContainsSearchTerm = it.name.includes(searchTerm);
 
-            if (foundItems) {
+            if (didFindItems) {
                 obj.items = res;
                 obj.isExpanded = true;
             }
@@ -38,7 +38,7 @@ class App extends Component {
                 obj.isExpanded = obj.isExpanded || false;
             }
 
-            if (foundItems || nameContainsSearchTerm) {
+            if (didFindItems || nameContainsSearchTerm) {
                 acc = acc.concat(obj);
             }
 

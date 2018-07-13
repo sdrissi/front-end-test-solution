@@ -1,15 +1,26 @@
-.Tree__element {
+.TreeElement {
     list-style: none;
+    margin-left: 14px;
+    margin-top: 5px;
+
 }
 
-.Tree__name--expanded {
-    font-weight: bold;
+.TreeElement--hasItems {
+    margin-left: 0;
 }
 
-.Tree__name--hasItems::before {
+.TreeElement--hasItems > .TreeElement__name::before {
     content: "+ ";
 }
 
-.Tree__name--highlighted {
+.TreeElement--isExpanded {
+    margin-left: 0;
+}
+
+.TreeElement--isExpanded > .TreeElement__name::before {
+    content: "- ";
+}
+
+.TreeElement__name--highlighted {
     background-color: yellow;
 }

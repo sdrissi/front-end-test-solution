@@ -40,23 +40,28 @@ export default class TreeElement extends Component {
         const hasItems = items && items.length > 0;
         const displaySubItems = hasItems && (this.state.isExpanded || isExpanded);
 
-        return <ul className="Tree__element">
-            <li className={`Tree__name ${hasItems && !displaySubItems && "Tree__name--hasItems"} ${displaySubItems && "Tree__name--expanded"}`}
-                onClick={this.handleClick}>
-                {
-                    highlight && match ?
-                        <span>{match[ 1 ]}<span
-                            className="Tree__name--highlighted">{match[ 2 ]}</span>{match[ 3 ]}</span>
-                        : name
-                }
-            </li>
+        return <li
+            className={`TreeElement ${hasItems && !displaySubItems && "TreeElement--hasItems"} ${displaySubItems && "TreeElement--isExpanded"}`}>
+
             {
-                displaySubItems && items.map(it => <TreeElement key={it.id}
-                                                                name={it.name}
-                                                                items={it.items}
-                                                                isExpanded={it.isExpanded}
-                                                                highlight={it.highlight}/>)
+                highlight && match ?
+                    <span className="TreeElement__name" onClick={this.handleClick}>
+                        {match[ 1 ]}<span className="TreeElement__name--highlighted">{match[ 2 ]}</span>{match[ 3 ]}
+                    </span> :
+                    <span className="TreeElement__name" onClick={this.handleClick}>{name}</span>
             }
-        </ul>;
+            
+            {
+                displaySubItems && <ul>
+                    {
+                        items.map(it => <TreeElement key={it.id}
+                                                     name={it.name}
+                                                     items={it.items}
+                                                     isExpanded={it.isExpanded}
+                                                     highlight={it.highlight}/>)
+                    }
+                </ul>
+            }
+        </li>;
     }
 }

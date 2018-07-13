@@ -10,7 +10,7 @@ Tree.propTypes = {
 
 export default function Tree({ items, children }) {
     return (
-        <div className="Tree">
+        <ul className="Tree">
             {
                 items && items.map((it) => <TreeElement key={it.id}
                                                         name={it.name}
@@ -19,6 +19,6 @@ export default function Tree({ items, children }) {
                                                         highlight={it.highlight}/>)
             }
             {children}
-        </div>
+        </ul>
     );
 }

@@ -1,3 +1,7 @@
 .Tree {
+    list-style: none;
+}
 
+.Tree {
+    padding-left: 0;
 }
