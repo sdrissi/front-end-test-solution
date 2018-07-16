@@ -7,7 +7,7 @@ it("renders without crashing", () => {
     shallow(<Tree/>);
 });
 
-it("renders a div with class Tree", () => {
+it("renders an ul with class Tree", () => {
     const wrapper = shallow(<Tree/>);
     expect(wrapper.find("ul.Tree").exists()).toBe(true);
     expect(wrapper.find("ul.Tree").length).toEqual(1);

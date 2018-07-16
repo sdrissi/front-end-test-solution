@@ -12,8 +12,8 @@ export default class TreeElement extends Component {
         items: PropTypes.arrayOf(PropTypes.object),
         // Specify if the items should be displayed
         isExpanded: PropTypes.bool,
-        // Text to highlight in name
-        highlight: PropTypes.string,
+        // String to highlight in name
+        highlightStr: PropTypes.string,
 
     };
 
@@ -26,14 +26,14 @@ export default class TreeElement extends Component {
             name,
             items,
             isExpanded,
-            highlight
+            highlightStr
         } = this.props;
 
         let match;
 
-        if (highlight) {
-            const pattern = `(.*)(${highlight})(.*)`;
-            const reg = new RegExp(pattern, "g");
+        if (highlightStr) {
+            const pattern = `(.*)(${highlightStr})(.*)`;
+            const reg = new RegExp(pattern, "gi");
             match = reg.exec(name);
         }
 
@@ -44,13 +44,13 @@ export default class TreeElement extends Component {
             className={`TreeElement ${hasItems && !displaySubItems && "TreeElement--hasItems"} ${displaySubItems && "TreeElement--isExpanded"}`}>
 
             {
-                highlight && match ?
+                highlightStr && match ?
                     <span className="TreeElement__name" onClick={this.handleClick}>
                         {match[ 1 ]}<span className="TreeElement__name--highlighted">{match[ 2 ]}</span>{match[ 3 ]}
                     </span> :
                     <span className="TreeElement__name" onClick={this.handleClick}>{name}</span>
             }
-            
+
             {
                 displaySubItems && <ul>
                     {
@@ -58,7 +58,7 @@ export default class TreeElement extends Component {
                                                      name={it.name}
                                                      items={it.items}
                                                      isExpanded={it.isExpanded}
-                                                     highlight={it.highlight}/>)
+                                                     highlightStr={it.highlightStr}/>)
                     }
                 </ul>
             }

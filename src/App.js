@@ -26,7 +26,7 @@ class App extends Component {
             const obj = { ...it };
 
             const didFindItems = res.length > 0;
-            const nameContainsSearchTerm = it.name.includes(searchTerm);
+            const nameContainsSearchTerm = it.name.toLowerCase().includes(searchTerm.toLowerCase());
 
             if (didFindItems) {
                 obj.items = res;
@@ -34,7 +34,7 @@ class App extends Component {
             }
 
             if (nameContainsSearchTerm) {
-                obj.highlight = searchTerm;
+                obj.highlightStr = searchTerm;
                 obj.isExpanded = obj.isExpanded || false;
             }
 

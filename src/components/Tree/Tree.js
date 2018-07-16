@@ -16,7 +16,7 @@ export default function Tree({ items, children }) {
                                                         name={it.name}
                                                         items={it.items}
                                                         isExpanded={it.isExpanded}
-                                                        highlight={it.highlight}/>)
+                                                        highlightStr={it.highlightStr}/>)
             }
             {children}
         </ul>
