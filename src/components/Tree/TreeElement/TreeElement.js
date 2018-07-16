@@ -13,8 +13,7 @@ export default class TreeElement extends Component {
         // Specify if the items should be displayed
         isExpanded: PropTypes.bool,
         // String to highlight in name
-        highlightStr: PropTypes.string,
-
+        highlightStr: PropTypes.string
     };
 
     handleClick = () => {

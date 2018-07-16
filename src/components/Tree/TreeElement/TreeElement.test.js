@@ -72,14 +72,14 @@ it("renders name prop in a span element with class TreeElement__name when highli
 it("renders name prop in a span element with class TreeElement__name and wrap string in name matching highlight prop in a span with class TreeElement__name--highlighted", () => {
     const props = {
         name: "item1",
-        highlight: "em"
+        highlightStr: "em"
     };
     const wrapper = shallow(<TreeElement {...props}/>);
     const nameWrapper = wrapper.find("span.TreeElement__name");
 
     expect(nameWrapper.text()).toEqual(props.name);
     expect(nameWrapper.find("span.TreeElement__name--highlighted").exists()).toBe(true);
-    expect(nameWrapper.find("span.TreeElement__name--highlighted").text()).toEqual(props.highlight);
+    expect(nameWrapper.find("span.TreeElement__name--highlighted").text()).toEqual(props.highlightStr);
 });
 
 
