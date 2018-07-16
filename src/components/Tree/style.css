@@ -1,7 +1,7 @@
 .Tree {
     list-style: none;
-}
-
-.Tree {
     padding-left: 0;
+    flex: 1;
+    overflow-y: scroll;
+    margin-top: 0;
 }

@@ -60,8 +60,9 @@ class App extends Component {
 
     render() {
         const items = this.state.searchResults ? this.state.searchResults : this.state.items;
-        return <div>
+        return <div className="App">
             <Search onChange={this.handleSearch} placeholder="Search for sectors" timeout={200}/>
+            <hr/>
             <Tree items={items}/>
         </div>;
 

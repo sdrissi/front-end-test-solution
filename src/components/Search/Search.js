@@ -37,7 +37,7 @@ export default class Search extends Component {
 
     render() {
         const { placeholder } = this.props;
-
+        const { highlight } = this.state;
         return (
             <div className="Search">
                 <input className="Search__input"
@@ -45,7 +45,8 @@ export default class Search extends Component {
                        onChange={this.handleChange}
                        placeholder={placeholder}
                        ref={this.input}/>
-                <button className="Search__button" onClick={this.handleClick}>Highlight</button>
+                <span className={`Search__button ${highlight && "Search__button--isActive"}`}
+                      onClick={this.handleClick}>Highlight</span>
             </div>
         );
     }
