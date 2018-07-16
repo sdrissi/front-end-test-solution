@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { mount, shallow } from "enzyme";
 import Search from "./Search";
 
 it("renders without crashing", () => {
@@ -27,10 +27,25 @@ it("renders placeholder according to placeholder prop", () => {
     expect(wrapper.find("input").prop("placeholder")).toEqual("Search");
 });
 
-it("should have highlight state equals false when initialized", () => {
+it("renders one span element with class Search__button", () => {
     const wrapper = shallow(<Search onChange={jest.fn()}/>);
+
+    expect(wrapper.find("span.Search__button").length).toEqual(1);
+    expect(wrapper.find("span").hasClass("Search__button")).toBe(true);
+});
+
+it("should have highlight state equals true when initialized", () => {
+    const wrapper = shallow(<Search onChange={jest.fn()}/>);
+    expect(wrapper.state().highlight).toBe(true);
+});
+
+it("should have highlight state equals to false when Search__button is clicked", () => {
+    const wrapper = mount(<Search onChange={jest.fn()}/>);
+
+    wrapper.find(".Search__button").simulate("click");
+
     expect(wrapper.state().highlight).toBe(false);
-})
+});
 
 it("should respond to change event by calling onChange with input value", () => {
     const onChange = jest.fn();
