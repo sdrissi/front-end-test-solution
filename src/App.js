@@ -16,26 +16,25 @@ class App extends Component {
 
     }
 
-    search = (items, searchTerm) => {
+    search = (items, searchTerm, highlight) => {
         if (!items) {
             return [];
         }
 
         return items.reduce((acc, it) => {
-            const res = this.search(it.items, searchTerm);
+            const res = this.search(it.items, searchTerm, highlight);
             const obj = { ...it };
 
             const didFindItems = res.length > 0;
-            const nameContainsSearchTerm = it.name.toLowerCase().includes(searchTerm.toLowerCase());
+            const nameContainsSearchTerm = it.name.match(new RegExp(searchTerm, "i"));
 
             if (didFindItems) {
                 obj.items = res;
                 obj.isExpanded = true;
             }
 
-            if (nameContainsSearchTerm) {
+            if (nameContainsSearchTerm && highlight) {
                 obj.highlightStr = searchTerm;
-                obj.isExpanded = obj.isExpanded || false;
             }
 
             if (didFindItems || nameContainsSearchTerm) {
@@ -46,10 +45,10 @@ class App extends Component {
         }, []);
     }
 
-    handleSearch = (searchTerm) => {
+    handleSearch = (searchTerm, highlight) => {
         if (searchTerm && searchTerm.trim().length > 0) {
             this.setState({
-                searchResults: this.search([ ...data ], searchTerm)
+                searchResults: this.search([ ...data ], searchTerm, highlight)
             });
         } else {
             this.setState({
@@ -62,7 +61,7 @@ class App extends Component {
     render() {
         const items = this.state.searchResults ? this.state.searchResults : this.state.items;
         return <div>
-            <Search onChange={this.handleSearch} placeholder="Search for sectors"/>
+            <Search onChange={this.handleSearch} placeholder="Search for sectors" timeout={200}/>
             <Tree items={items}/>
         </div>;
 
