@@ -39,9 +39,14 @@ export default class TreeElement extends Component {
         const hasItems = items && items.length > 0;
         const displaySubItems = hasItems && (this.state.isExpanded || isExpanded);
 
-        return <li
-            className={`TreeElement ${hasItems && !displaySubItems && "TreeElement--hasItems"} ${displaySubItems && "TreeElement--isExpanded"}`}>
+        let className = "TreeElement";
+        if (displaySubItems) {
+            className += " TreeElement--isExpanded";
+        } else if (hasItems) {
+            className += " TreeElement--hasItems";
+        }
 
+        return <li className={className}>
             {
                 highlightStr && match ?
                     <span className="TreeElement__name" onClick={this.handleClick}>

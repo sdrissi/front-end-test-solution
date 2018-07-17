@@ -45,7 +45,7 @@ export default class Search extends Component {
                        onChange={this.handleChange}
                        placeholder={placeholder}
                        ref={this.input}/>
-                <span className={`Search__button ${highlight && "Search__button--isActive"}`}
+                <span className={`Search__button ${highlight ? "Search__button--isActive" : ""}`}
                       onClick={this.handleClick}>Highlight</span>
             </div>
         );
