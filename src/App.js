@@ -10,7 +10,6 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            items: data,
             searchResults: null
         };
 
@@ -59,7 +58,7 @@ class App extends Component {
     }
 
     render() {
-        const items = this.state.searchResults ? this.state.searchResults : this.state.items;
+        const items = this.state.searchResults ? this.state.searchResults : data;
         return <div className="App">
             <Search onChange={this.handleSearch} placeholder="Search for sectors" timeout={200}/>
             <hr/>
