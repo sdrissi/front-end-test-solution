@@ -2,7 +2,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import App from "./App";
 import Search from "./components/Search";
-import Tree from "./components/Tree";
+import TreeView from "./components/TreeView";
 
 jest.mock("./data/sectors", () => {
     return [
@@ -38,14 +38,14 @@ it("renders one Search component on top", () => {
     expect(wrapper.find("div.App").childAt(0).type()).toEqual(Search);
 });
 
-it("renders one Tree component at the end", () => {
+it("renders one TreeView component at the end", () => {
     const wrapper = shallow(<App/>);
 
-    expect(wrapper.find(Tree).length).toEqual(1);
-    expect(wrapper.childAt(2).type()).toEqual(Tree);
+    expect(wrapper.find(TreeView).length).toEqual(1);
+    expect(wrapper.childAt(2).type()).toEqual(TreeView);
 });
 
-it("renders an hr separating Search and Tree components", () => {
+it("renders an hr separating Search and TreeView components", () => {
     const wrapper = shallow(<App/>);
 
     expect(wrapper.childAt(1).type()).toEqual("hr");
@@ -230,12 +230,12 @@ it("searches searchTerm through items, doesn't mutate items and return a new arr
     expect(res).not.toBe(items);
 });
 
-it("renders Tree component with items read from json file when searchResults state is null", () => {
+it("renders TreeView component with items read from json file when searchResults state is null", () => {
     const wrapper = shallow(<App/>);
 
     wrapper.setState({ searchResults: null });
 
-    expect(wrapper.find(Tree).props().items).toEqual([
+    expect(wrapper.find(TreeView).props().items).toEqual([
         {
             "id": "1",
             "name": "a",
@@ -244,7 +244,7 @@ it("renders Tree component with items read from json file when searchResults sta
     ]);
 });
 
-it("renders Tree component with items from searchResults when searchResults state is not null", () => {
+it("renders TreeView component with items from searchResults when searchResults state is not null", () => {
     const wrapper = shallow(<App/>);
     const res = [
         {
@@ -261,5 +261,5 @@ it("renders Tree component with items from searchResults when searchResults stat
 
     wrapper.setState({ searchResults: res });
 
-    expect(wrapper.find(Tree).props().items).toEqual(res);
+    expect(wrapper.find(TreeView).props().items).toEqual(res);
 });

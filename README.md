@@ -3,6 +3,35 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
+## Available Components
+
+## `Search`
+
+The search component represents the App search bar. It is used to perform a search by search term on the data displayed 
+in the TreeView. It also contains a highlight button, active by default, that allow to highlight the search term in the 
+TreeView.
+
+| Props | Description | Type | isRequired |
+| ----- | ----------- | ---- | ---------- |
+| onChange | Callback called on search input change | Function | Yes
+| timeout | The amount in milliseconds after which after which onChange callback will be invoked | Number | No
+| placeholder | String to be displayed as placeholder in the input element | String | No
+
+
+| State | Description | Type | Initial value |
+| ----- | ----------- | ---- | ------------- |
+| highlight | State of the highlight button of the search bar (true=activated) | Boolean | true
+
+## `TreeView`
+
+TreeView functional component is used as a wrapper around TreeViewElement. It takes a list of items and renders for each 
+of them a TreeViewElement component inside an unordered list (ul element). It also accept child nodes that will be 
+renders after the items. Hence, developers can either pass a list of objects (items) to TreeView component, thus 
+delegating the generation of TreeViewElements to the component, or build TreeViewElement themselves and pass them as 
+children.
+
+## `TreeViewElement`
+
 ## Table of Contents
 
 - [Updating to New Releases](#updating-to-new-releases)

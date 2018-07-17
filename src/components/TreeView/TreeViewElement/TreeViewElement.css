@@ -1,0 +1,30 @@
+.TreeViewElement {
+    list-style: none;
+    margin-left: 15px;
+    margin-top: 5px;
+
+}
+
+.TreeViewElement--hasItems {
+    margin-left: 0;
+}
+
+.TreeViewElement__name::before {
+    font-size: 10px;
+}
+
+.TreeViewElement--hasItems > .TreeViewElement__name::before {
+    content: "\25b6  ";
+}
+
+.TreeViewElement--isExpanded {
+    margin-left: 0;
+}
+
+.TreeViewElement--isExpanded > .TreeViewElement__name::before {
+    content: "\25bc  ";
+}
+
+.TreeViewElement__name--highlighted {
+    background-color: yellow;
+}

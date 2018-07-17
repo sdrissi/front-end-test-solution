@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import Tree from "./components/Tree";
+import TreeView from "./components/TreeView";
 import Search from "./components/Search";
 
 import data from "./data/sectors";
@@ -63,7 +63,7 @@ class App extends Component {
         return <div className="App">
             <Search onChange={this.handleSearch} placeholder="Search for sectors" timeout={200}/>
             <hr/>
-            <Tree items={items}/>
+            <TreeView items={items}/>
         </div>;
 
     }
