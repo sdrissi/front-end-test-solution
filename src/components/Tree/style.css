@@ -4,4 +4,5 @@
     flex: 1;
     overflow-y: scroll;
     margin-top: 0;
+    border-bottom: 1px solid grey;
 }

@@ -6,6 +6,7 @@ import TreeElement from "./TreeElement";
 
 Tree.propTypes = {
     items: PropTypes.arrayOf(PropTypes.object),
+    children: PropTypes.node
 }
 
 export default function Tree({ items, children }) {
