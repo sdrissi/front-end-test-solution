@@ -39,25 +39,27 @@ it("should have highlight state equals true when initialized", () => {
     expect(wrapper.state().highlight).toBe(true);
 });
 
-it("should have highlight state equals to false when Search__button is clicked", () => {
-    const wrapper = mount(<Search onChange={jest.fn()}/>);
+it("should respond to click event on Search__button by setting highlight state to false and calling onChange", () => {
+    const onChange = jest.fn();
+    const wrapper = mount(<Search onChange={onChange}/>);
 
     wrapper.find(".Search__button").simulate("click");
 
+    expect(onChange.mock.calls.length).toEqual(1);
     expect(wrapper.state().highlight).toBe(false);
 });
 
-it("should respond to change event by calling onChange with input value", () => {
+it("should respond to change event by calling onChange prop with input value and highlight true", () => {
     const onChange = jest.fn();
     const wrapper = shallow(<Search onChange={onChange}/>);
 
     wrapper.find("input").simulate("change", { target: { value: "a" } });
 
     expect(onChange.mock.calls.length).toEqual(1);
-    expect(onChange).toHaveBeenCalledWith("a", false);
+    expect(onChange).toHaveBeenCalledWith("a", true);
 });
 
-it("should respond to change event by calling onChange prop with input value after the specified timeout", () => {
+it("should respond to change event by calling onChange prop with input value and highlight true after the specified timeout", () => {
     jest.useFakeTimers();
     const onChange = jest.fn();
     const props = {
@@ -69,5 +71,5 @@ it("should respond to change event by calling onChange prop with input value aft
     wrapper.find("input").simulate("change", { target: { value: "a" } });
 
     expect(setTimeout).toHaveBeenCalledTimes(1);
-    expect(setTimeout).toHaveBeenLastCalledWith(onChange, 500, "a", false);
+    expect(setTimeout).toHaveBeenLastCalledWith(onChange, 500, "a", true);
 });
