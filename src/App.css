@@ -3,3 +3,7 @@
     flex-flow: column;
     height: 95vh;
 }
+
+.App > hr {
+    margin: 20px 0 5px 0;
+}

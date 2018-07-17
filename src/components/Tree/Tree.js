@@ -1,11 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./style.css";
+import "./Tree.css";
 
 import TreeElement from "./TreeElement";
 
 Tree.propTypes = {
-    items: PropTypes.arrayOf(PropTypes.object),
+    // List of item objects to be render in a TreeView
+    items: PropTypes.arrayOf(PropTypes.shape({
+        // Shape of the item to be passed to TreeElement component, see propTypes of TreeElement
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        items: PropTypes.arrayOf(PropTypes.object),
+        isExpanded: PropTypes.bool,
+        highlightStr: PropTypes.string
+    })),
+    // List of nodes to be render after items
     children: PropTypes.node
 }
 

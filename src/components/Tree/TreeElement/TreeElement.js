@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import "./style.css";
+import "./TreeElement.css";
 
 export default class TreeElement extends Component {
     state = { isExpanded: false }
 
     static propTypes = {
         // The name of the tree element
-        name: PropTypes.string,
+        name: PropTypes.string.isRequired,
         // The list of items to display when the tree element is clicked
         items: PropTypes.arrayOf(PropTypes.object),
         // Specify if the items should be displayed
