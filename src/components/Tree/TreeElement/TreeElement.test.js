@@ -2,21 +2,27 @@ import React from "react";
 import { shallow } from "enzyme";
 import TreeElement from "./TreeElement";
 
+const requiredProps = {
+    id: "1",
+    name: "item1"
+}
+
 it("renders without crashing", () => {
-    shallow(<TreeElement/>);
+    shallow(<TreeElement {...requiredProps}/>);
 });
 
 it("renders one li with class TreeElement", () => {
-    const wrapper = shallow(<TreeElement/>);
+    const wrapper = shallow(<TreeElement {...requiredProps}/>);
     expect(wrapper.find("li").hasClass("TreeElement")).toBe(true);
     expect(wrapper.find("li.TreeElement").length).toEqual(1);
 });
 
 it("renders the items as TreeElements in a ul when span with class TreeElement__name is clicked", () => {
     const props = {
+        ...requiredProps,
         items: [
             {
-                id: 1,
+                id: "1",
                 name: "item1"
             }
         ]
@@ -30,6 +36,7 @@ it("renders the items as TreeElements in a ul when span with class TreeElement__
 
 it("renders the items as TreeElements in a ul when isExpanded prop is true", () => {
     const props = {
+        ...requiredProps,
         isExpanded: true,
         items: [
             {
@@ -46,6 +53,7 @@ it("renders the items as TreeElements in a ul when isExpanded prop is true", () 
 
 it("doesn't render the items when li is not clicked and isExpanded prop is false", () => {
     const props = {
+        ...requiredProps,
         items: [
             {
                 id: 1,

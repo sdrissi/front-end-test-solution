@@ -7,7 +7,7 @@ import Tree from "./components/Tree";
 jest.mock("./data/sectors", () => {
     return [
         {
-            "id": 1,
+            "id": "1",
             "name": "a",
             "items": null
         }
@@ -68,7 +68,7 @@ it("handles search with non empty searchTerm by calling search function with imp
 
     expect(wrapper.instance().search).toHaveBeenCalledWith([
         {
-            "id": 1,
+            "id": "1",
             "name": "a",
             "items": null
         }
@@ -89,7 +89,7 @@ it("handles search with empty search term by setting searchResults state to null
 it("searches searchTerm through items recursively for each item", () => {
     const items = [
         {
-            id: 1,
+            id: "1",
             name: "a",
             items: [
                 {
@@ -119,15 +119,15 @@ it("searches searchTerm through items recursively for each item", () => {
 it("searches searchTerm through items and set isExpanded to true and items to search result if match where found in sub items", () => {
     const items = [
         {
-            id: 1,
+            id: "1",
             name: "a",
             items: [
                 {
-                    id: 2,
+                    id: "2",
                     name: "b",
                     items: [
                         {
-                            id: 3,
+                            id: "3",
                             name: "c",
                             items: null
                         }
@@ -144,17 +144,17 @@ it("searches searchTerm through items and set isExpanded to true and items to se
 
     expect(res).toEqual([
         {
-            id: 1,
+            id: "1",
             name: "a",
             isExpanded: true,
             items: [
                 {
-                    id: 2,
+                    id: "2",
                     name: "b",
                     isExpanded: true,
                     items: [
                         {
-                            id: 3,
+                            id: "3",
                             name: "c",
                             items: null
                         }
@@ -168,7 +168,7 @@ it("searches searchTerm through items and set isExpanded to true and items to se
 it("searches searchTerm through items and set highlightStr to searchTerm if item's name contains searchTerm and highlight is true", () => {
     const items = [
         {
-            id: 1,
+            id: "1",
             name: "abc",
             items: null
         }
@@ -181,7 +181,7 @@ it("searches searchTerm through items and set highlightStr to searchTerm if item
 
     expect(res).toEqual([
         {
-            id: 1,
+            id: "1",
             name: "abc",
             highlightStr: "b",
             items: null
@@ -203,15 +203,15 @@ it("searches searchTerm through items and return empty array if items is null", 
 it("searches searchTerm through items, doesn't mutate items and return a new array", () => {
     const items = [
         {
-            id: 1,
+            id: "1",
             name: "a",
             items: [
                 {
-                    id: 2,
+                    id: "2",
                     name: "b",
                     items: [
                         {
-                            id: 3,
+                            id: "3",
                             name: "c",
                             items: null
                         }
@@ -237,7 +237,7 @@ it("renders Tree component with items read from json file when searchResults sta
 
     expect(wrapper.find(Tree).props().items).toEqual([
         {
-            "id": 1,
+            "id": "1",
             "name": "a",
             "items": null
         }
@@ -248,12 +248,12 @@ it("renders Tree component with items from searchResults when searchResults stat
     const wrapper = shallow(<App/>);
     const res = [
         {
-            "id": 1,
+            "id": "1",
             "name": "ab",
             "items": null
         },
         {
-            "id": 2,
+            "id": "2",
             "name": "b",
             "items": null
         }
